@@ -1,13 +1,11 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import './Main.css';
 
 export function Main() {
   const [filterValue, setFilter] = React.useState('');
   const [songs, setSongs] = React.useState(null);
-
-  const navigate = useNavigate();
 
   React.useEffect(() => {
     if (
@@ -32,10 +30,6 @@ export function Main() {
     setFilter(e.target.value);
   }
 
-  function goToPodcast(song) {
-    navigate(`/podcast/${song.id.attributes['im:id']}`, { state: song});
-  }
-
   return (
     <div className='Main'>
       <div className='filter'>
@@ -51,8 +45,8 @@ export function Main() {
               song['im:name'].label.toUpperCase().includes(filterValue.toUpperCase()) ||
               song['im:artist'].label.toUpperCase().includes(filterValue.toUpperCase())
             ) {
-              return <React.Fragment key={i}>
-                <div className='col' onClick={() => goToPodcast(song)}>
+              return <Link key={i} to={`/podcast/${song.id.attributes['im:id']}`} state={{ song }}>
+                <div className='col'>
                   <div className='song'>
                     <div className='background'></div>
 
@@ -66,7 +60,7 @@ export function Main() {
                     </div>
                   </div>
                 </div>
-              </React.Fragment>
+              </Link>
             }
 
             return null;

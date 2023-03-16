@@ -17,6 +17,11 @@ code {
   justify-content: center;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 .index {
   width: 1200px;
 }

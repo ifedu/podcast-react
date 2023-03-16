@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 
 import './Podcast.css';
 import { PodcastInfo } from '../../components/PodcastInfo/PodcastInfo';
@@ -23,10 +23,8 @@ function convertToTime(ms) {
 
 export function Podcast() {
   const { state: { song } } = useLocation();
-
-  const [ podcastInfo, setPodcast ] = React.useState(null);
   const { podcastId } = useParams();
-  const navigate = useNavigate();
+  const [ podcastInfo, setPodcast ] = React.useState(null);
 
   React.useEffect(() => {
     if (
@@ -47,16 +45,9 @@ export function Podcast() {
     });
   }, []);
 
-  function goToEpisode(podcast) {
-    console.log(podcast);
-    navigate(`/podcast/${podcastId}/episode/${podcast.trackId}`, { state: podcast});
-  }
-
   if (!podcastInfo) {
     return null;
   }
-
-  const podcastMainInfo = podcastInfo.results[0];
 
   return (
     <div className='Podcast'>
@@ -74,16 +65,16 @@ export function Podcast() {
 
           <div className='body'>
             {
-              podcastInfo.results.map((podcast, i) => {
-                if (!podcast.description) return null;
+              podcastInfo.results.map((episode, i) => {
+                if (!episode.description) return null;
 
-                return <React.Fragment key={i}>
-                  <div className='episode row' onClick={() => goToEpisode(podcast)}>
-                    <span>{podcast.trackName}</span>
-                    <span>{convertToShortDate(podcast.releaseDate)}</span>
-                    <span>{convertToTime(podcast.trackTimeMillis)}</span>
+                return <Link key={i} to={`/podcast/${podcastId}/episode/${episode.trackId}`} state={{ podcastInfo, song, episode }}>
+                  <div className='episode row'>
+                    <span>{episode.trackName}</span>
+                    <span>{convertToShortDate(episode.releaseDate)}</span>
+                    <span>{convertToTime(episode.trackTimeMillis)}</span>
                   </div>
-                </React.Fragment>
+                </Link>
               })
             }
           </div>
