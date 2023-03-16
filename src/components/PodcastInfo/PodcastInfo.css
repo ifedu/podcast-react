@@ -1,0 +1,37 @@
+.PodcastInfo {
+  box-shadow: 0 1px 2px 2px #ddd;
+  font-size: 14px;
+  width: 300px;
+}
+
+.PodcastInfo .section  {
+  margin: 8px;
+  padding: 12px;
+}
+
+.PodcastInfo span {
+  font-weight: bold;
+}
+
+.PodcastInfo .picture {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+}
+
+.PodcastInfo .picture img {
+  width: 200px;
+}
+
+.PodcastInfo .title {
+  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+}
+
+.PodcastInfo .title span {
+  font-size: 16px;
+}
+
+.PodcastInfo .description div {
+  font-style: italic;
+}

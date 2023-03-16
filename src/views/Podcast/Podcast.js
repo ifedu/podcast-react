@@ -2,6 +2,7 @@ import React from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import './Podcast.css';
+import { PodcastInfo } from '../../components/PodcastInfo/PodcastInfo';
 
 function convertToShortDate(fullDate) {
   const date = new Date(fullDate);
@@ -21,7 +22,7 @@ function convertToTime(ms) {
 }
 
 export function Podcast() {
-  const { state } = useLocation();
+  const { state: { song } } = useLocation();
 
   const [ podcastInfo, setPodcast ] = React.useState(null);
   const { podcastId } = useParams();
@@ -59,19 +60,7 @@ export function Podcast() {
 
   return (
     <div className='Podcast'>
-      <div className='info'>
-        <div className='picture'><img src={podcastMainInfo.artworkUrl600} alt='All Songs Considered'/></div>
-
-        <div className='title'>
-          <span>{podcastMainInfo.collectionName}</span>
-          <div>by {podcastMainInfo.artistName}</div>
-        </div>
-
-        <div className='description'>
-          <span>Description</span>
-          <div>{state.summary.label}</div>
-        </div>
-      </div>
+      <PodcastInfo info={podcastInfo.results[0]} song={song}/>
 
       <div className='episode'>
         <div>Episodes: {podcastInfo.resultCount}</div>
