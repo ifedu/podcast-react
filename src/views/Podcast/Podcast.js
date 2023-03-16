@@ -75,7 +75,7 @@ export function Podcast() {
           <div className='body'>
             {
               podcastInfo.results.map((podcast, i) => {
-                if (podcast.artistId) return null;
+                if (!podcast.description) return null;
 
                 return <React.Fragment key={i}>
                   <div className='episode row' onClick={() => goToEpisode(podcast)}>
