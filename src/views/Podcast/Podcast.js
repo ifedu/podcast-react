@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
 
 import './Podcast.css';
+import { useLoading } from '../../context/LoadingContext';
 import { PodcastInfo } from '../../components/PodcastInfo/PodcastInfo';
 
 function convertToShortDate(fullDate) {
@@ -22,16 +23,20 @@ function convertToTime(ms) {
 }
 
 export function Podcast() {
+  const { setIsLoading } = useLoading();
   const { state: { song } } = useLocation();
   const { podcastId } = useParams();
   const [ podcastInfo, setPodcast ] = React.useState(null);
 
   React.useEffect(() => {
+    setIsLoading(true);
+
     if (
       localStorage.getItem(`last podcast ${podcastId}`) !== null &&
       Math.floor((new Date() - new Date(localStorage.getItem(`last podcast ${podcastId}`))) / (1000 * 60 * 60 * 24)) === 0
     ) {
       setPodcast(JSON.parse(localStorage.getItem(`podcast ${podcastId}`)));
+      setIsLoading(false);
       return;
     }
 
@@ -41,7 +46,7 @@ export function Podcast() {
       localStorage.setItem(`podcast ${podcastId}`, JSON.stringify(resp));
       localStorage.setItem(`last podcast ${podcastId}`, new Date());
 
-      setPodcast(resp);
+      setIsLoading(false);
     });
   }, []);
 

@@ -25,3 +25,8 @@ a {
 .index {
   width: 1200px;
 }
+
+.index .head {
+  display: flex;
+  justify-content: space-between;
+}

@@ -2,17 +2,22 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './Main.css';
+import { useLoading } from '../../context/LoadingContext';
 
 export function Main() {
+  const { setIsLoading } = useLoading();
   const [filterValue, setFilter] = React.useState('');
   const [songs, setSongs] = React.useState(null);
 
   React.useEffect(() => {
+    setIsLoading(true);
+
     if (
       localStorage.getItem('last songs') !== null &&
       Math.floor((new Date() - new Date(localStorage.getItem('last songs'))) / (1000 * 60 * 60 * 24)) === 0
     ) {
       setSongs(JSON.parse(localStorage.getItem('songs')));
+      setIsLoading(false);
       return;
     }
 
@@ -23,6 +28,7 @@ export function Main() {
       localStorage.setItem('last songs', new Date());
 
       setSongs(resp.feed);
+      setIsLoading(false);
     });
   }, []);
 
