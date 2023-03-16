@@ -1,11 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './Logo.css';
 
 export function Logo() {
   return (
-    <div className='Logo'>
-      <div>Podcaster</div>
-    </div>
+    <Link to={'/'}>
+      <div className='Logo'>
+        <div>Podcaster</div>
+      </div>
+    </Link>
   );
 }

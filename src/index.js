@@ -12,8 +12,8 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <div className='index'>
-      <Logo/>
       <BrowserRouter>
+        <Logo/>
         <Routes>
           <Route path='/' element={<Main/>}></Route>
           <Route path='/podcast/:podcastId' element={<Podcast/>}></Route>
