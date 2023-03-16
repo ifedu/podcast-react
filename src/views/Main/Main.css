@@ -1,0 +1,91 @@
+.Main {
+  border-top: 1px solid #ccc;
+}
+
+/* filter */
+.Main .filter {
+  align-items: center;
+  display: flex;
+  justify-content: right;
+  margin: 16px;
+}
+
+.Main .filter span {
+  background-color: #2777bf;
+  border-radius: 5px;
+  color: white;
+  margin-right: 8px;
+  padding: 0px 4px;
+}
+
+.Main .filter input {
+  border-radius: 4px;
+  border: 1px solid #aaa;
+  min-width: 120px;
+  max-width: 200px;
+  padding: 8px;
+  width: 200px;
+}
+
+.Main .filter input::placeholder {
+  color: #aaa;
+}
+
+/* songs */
+.Main .cols {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.Main .col {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 100px;
+}
+
+.Main .song {
+  height: 200px;
+  position: relative;
+  width: 100%;
+}
+
+.Main .background {
+  box-shadow: 0 1px 2px 2px #ddd;
+  height: 70%;
+  position: absolute;
+  top: 30%;
+  width: 100%;
+}
+
+.Main .image {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.Main .image img {
+  border-radius: 100px;
+  height: 120px;
+  width: 120px;
+}
+
+.Main .texts {
+  padding: 12px;
+  text-align: center;
+}
+
+.Main .title {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  max-height: 40px;
+  overflow: hidden;
+  text-transform: uppercase;
+}
+
+.Main .author {
+  color: #777;
+  font-size: 12px;
+}
