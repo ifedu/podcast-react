@@ -5,11 +5,40 @@
 
 .Podcast .info {
   box-shadow: 0 1px 2px 2px #ddd;
+  font-size: 14px;
   width: 300px;
 }
 
 .Podcast .info > div {
-  padding: 8px;
+  margin: 8px;
+  padding: 12px;
+}
+
+.Podcast .info span {
+  font-weight: bold;
+}
+
+.Podcast .info .picture {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+}
+
+.Podcast .info .picture img {
+  width: 200px;
+}
+
+.Podcast .info .title {
+  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+}
+
+.Podcast .info .title span {
+  font-size: 16px;
+}
+
+.Podcast .info .description div {
+  font-style: italic;
 }
 
 .Podcast .table {
@@ -31,14 +60,25 @@
   padding: 24px 16px;
 }
 
-.Podcast .episode .head {
-  font-weight: bold;
-}
-
 .Podcast .episode .row {
   border-bottom: 1px solid #ddd;
   border-top: 1px solid #ddd;
+  cursor: pointer;
   display: grid;
   grid-template-columns: 75% 15% 10%;
-  padding: 0px 16px 16px 0;
+  padding: 12px 16px 12px 0;
+}
+
+.Podcast .episode .row:nth-child(odd) {
+  background-color: #eee;
+}
+
+.Podcast .episode .row.head:nth-child(1) {
+  background-color: #fff;
+  border-top: none;
+  font-weight: bold;
+}
+
+.Podcast .episode .row.episode span:nth-child(1) {
+  color: #859cab;
 }

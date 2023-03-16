@@ -1,25 +1,80 @@
 import React from 'react';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+
 import './Podcast.css';
 
+function convertToShortDate(fullDate) {
+  const date = new Date(fullDate);
+  const day = date.getDate();
+  const month = date.getMonth();
+  const year = date.getFullYear();
+
+  return `${day}/${Number(month) + 1}/${year}`;
+}
+
+function convertToTime(ms) {
+  const date = new Date(ms);
+  const minutes = date.getMinutes();
+  const seconds = date.getSeconds();
+
+  return `${minutes}:${seconds}`;
+}
+
 export function Podcast() {
+  const { state } = useLocation();
+
+  const [ podcastInfo, setPodcast ] = React.useState(null);
+  const { podcastId } = useParams();
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    if (
+      localStorage.getItem(`last podcast ${podcastId}`) !== null &&
+      Math.floor((new Date() - new Date(localStorage.getItem(`last podcast ${podcastId}`))) / (1000 * 60 * 60 * 24)) === 0
+    ) {
+      setPodcast(JSON.parse(localStorage.getItem(`podcast ${podcastId}`)));
+      return;
+    }
+
+    fetch(`https://itunes.apple.com/lookup?id=${podcastId}&media=podcast&entity=podcastEpisode&limit=20`)
+    .then((resp) => resp.json())
+    .then((resp) => {
+      localStorage.setItem(`podcast ${podcastId}`, JSON.stringify(resp));
+      localStorage.setItem(`last podcast ${podcastId}`, new Date());
+
+      setPodcast(resp);
+    });
+  }, []);
+
+  function goToEpisode(podcast) {
+    console.log(podcast);
+    navigate(`/podcast/${podcastId}/episode/${podcast.trackId}`, { state: podcast});
+  }
+
+  if (!podcastInfo) {
+    return null;
+  }
+
+  const podcastMainInfo = podcastInfo.results[0];
+
   return (
     <div className='Podcast'>
       <div className='info'>
-        <div className='picture'><img src=''/></div>
+        <div className='picture'><img src={podcastMainInfo.artworkUrl600} alt='All Songs Considered'/></div>
 
         <div className='title'>
-          <span>Song Exploder</span>
-          <p>by Song Exploder</p>
+          <span>{podcastMainInfo.collectionName}</span>
+          <div>by {podcastMainInfo.artistName}</div>
         </div>
 
         <div className='description'>
           <span>Description</span>
-          <p>A podcast...</p>
+          <div>{state.summary.label}</div>
         </div>
       </div>
 
       <div className='episode'>
-        <div>Episodes: 66</div>
+        <div>Episodes: {podcastInfo.resultCount}</div>
 
         <div className='table'>
           <div className='head row'>
@@ -29,17 +84,19 @@ export function Podcast() {
           </div>
 
           <div className='body'>
-            <div className='episode row'>
-              <span>KT Tunstall</span>
-              <span>1/3/2016</span>
-              <span>14:00</span>
-            </div>
+            {
+              podcastInfo.results.map((podcast, i) => {
+                if (podcast.artistId) return null;
 
-            <div className='episode row'>
-              <span>KT Tunstall</span>
-              <span>1/3/2016</span>
-              <span>14:00</span>
-            </div>
+                return <React.Fragment key={i}>
+                  <div className='episode row' onClick={() => goToEpisode(podcast)}>
+                    <span>{podcast.trackName}</span>
+                    <span>{convertToShortDate(podcast.releaseDate)}</span>
+                    <span>{convertToTime(podcast.trackTimeMillis)}</span>
+                  </div>
+                </React.Fragment>
+              })
+            }
           </div>
         </div>
       </div>
