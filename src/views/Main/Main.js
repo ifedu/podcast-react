@@ -36,6 +36,10 @@ export function Main() {
     setFilter(e.target.value);
   }
 
+  if (!songs) {
+    return null;
+  }
+
   return (
     <div className='Main'>
       <div className='filter'>
