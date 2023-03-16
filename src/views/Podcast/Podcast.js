@@ -40,12 +40,13 @@ export function Podcast() {
       return;
     }
 
-    fetch(`https://itunes.apple.com/lookup?id=${podcastId}&media=podcast&entity=podcastEpisode&limit=20`)
+    fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(`https://itunes.apple.com/lookup?id=${podcastId}&media=podcast&entity=podcastEpisode&limit=20`)}`)
     .then((resp) => resp.json())
     .then((resp) => {
-      localStorage.setItem(`podcast ${podcastId}`, JSON.stringify(resp));
+      localStorage.setItem(`podcast ${podcastId}`, resp.contents);
       localStorage.setItem(`last podcast ${podcastId}`, new Date());
 
+      setPodcast(JSON.parse(resp.contents));
       setIsLoading(false);
     });
   }, []);
