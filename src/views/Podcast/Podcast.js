@@ -49,7 +49,7 @@ export function Podcast() {
       setPodcast(JSON.parse(resp.contents));
       setIsLoading(false);
     });
-  }, []);
+  }, [setIsLoading, podcastId]);
 
   if (!podcastInfo) {
     return null;

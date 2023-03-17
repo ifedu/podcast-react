@@ -30,7 +30,7 @@ export function Main() {
       setSongs(resp.feed);
       setIsLoading(false);
     });
-  }, []);
+  }, [setIsLoading]);
 
   function onFilterChange(e) {
     setFilter(e.target.value);
