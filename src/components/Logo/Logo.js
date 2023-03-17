@@ -5,7 +5,7 @@ import './Logo.css';
 
 export function Logo() {
   return (
-    <Link to={'/'}>
+    <Link to={'/'} data-testid='logo'>
       <div className='Logo'>
         <div>Podcaster</div>
       </div>
