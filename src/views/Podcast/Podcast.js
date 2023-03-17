@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
 
 import './Podcast.css';
-import { useLoading } from '../../context/LoadingContext';
+import { useLoading } from '../../hooks/LoadingContext';
 import { PodcastInfo } from '../../components/PodcastInfo/PodcastInfo';
 
 function convertToShortDate(fullDate) {

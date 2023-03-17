@@ -5,7 +5,7 @@ import { MemoryRouter, Route, Routes } from 'react-router-dom';
 
 import { Logo } from './Logo';
 import { Main } from '../../views/Main/Main';
-import { LoadingProvider } from '../../context/LoadingContext';
+import { LoadingProvider } from '../../hooks/LoadingContext';
 
 afterEach(cleanup);
 

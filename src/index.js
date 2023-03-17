@@ -8,7 +8,7 @@ import { Logo } from './components/Logo/Logo';
 import { Episode } from './views/Episode/Episode';
 import { Main } from './views/Main/Main';
 import { Podcast } from './views/Podcast/Podcast';
-import { LoadingProvider } from './context/LoadingContext';
+import { LoadingProvider } from './hooks/LoadingContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
