@@ -2,35 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './Main.css';
-import { useLoading } from '../../context/LoadingContext';
+import { useLoading } from '../../hooks/LoadingContext';
+import { useSongs } from '../../hooks/useSongs';
 
 export function Main() {
   const { setIsLoading } = useLoading();
   const [filterValue, setFilter] = React.useState('');
-  const [songs, setSongs] = React.useState(null);
 
-  React.useEffect(() => {
-    setIsLoading(true);
-
-    if (
-      localStorage.getItem('last songs') !== null &&
-      Math.floor((new Date() - new Date(localStorage.getItem('last songs'))) / (1000 * 60 * 60 * 24)) === 0
-    ) {
-      setSongs(JSON.parse(localStorage.getItem('songs')));
-      setIsLoading(false);
-      return;
-    }
-
-    fetch('https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json')
-    .then((resp) => resp.json())
-    .then((resp) => {
-      localStorage.setItem('songs', JSON.stringify(resp.feed));
-      localStorage.setItem('last songs', new Date());
-
-      setSongs(resp.feed);
-      setIsLoading(false);
-    });
-  }, [setIsLoading]);
+  const songs = useSongs(setIsLoading);
 
   function onFilterChange(e) {
     setFilter(e.target.value);
@@ -41,7 +20,7 @@ export function Main() {
   }
 
   return (
-    <div className='Main'>
+    <div className='Main' data-testid='main'>
       <div className='filter'>
         <span>{songs?.entry?.length}</span>
         <input placeholder='Filter podcasts...' onChange={onFilterChange}/>
