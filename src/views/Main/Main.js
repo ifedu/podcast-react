@@ -34,7 +34,7 @@ export function Main() {
               song['im:name'].label.toUpperCase().includes(filterValue.toUpperCase()) ||
               song['im:artist'].label.toUpperCase().includes(filterValue.toUpperCase())
             ) {
-              return <Link key={i} to={`/podcast/${song.id.attributes['im:id']}`} state={{ song }}>
+              return <Link key={i} to={`/podcast/${song.id.attributes['im:id']}`} state={{ song }}  data-testid='link-to-podcast'>
                 <div className='col'>
                   <div className='song'>
                     <div className='background'></div>

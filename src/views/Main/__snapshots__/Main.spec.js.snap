@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Podcast renders correctly 1`] = `
+<div
+  className="Main"
+  data-testid="main"
+>
+  <div
+    className="filter"
+  >
+    <span>
+      1
+    </span>
+    <input
+      onChange={[Function]}
+      placeholder="Filter podcasts..."
+    />
+  </div>
+  <div
+    className="cols"
+  >
+    <a
+      data-testid="link-to-podcast"
+      href="/podcast/1"
+      onClick={[Function]}
+    >
+      <div
+        className="col"
+      >
+        <div
+          className="song"
+        >
+          <div
+            className="background"
+          />
+          <div
+            className="image"
+          >
+            <img
+              alt="All Songs Considered"
+            />
+          </div>
+          <div
+            className="texts"
+          >
+            <div
+              className="title"
+            />
+            <div
+              className="author"
+            >
+              Author: 
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+`;
