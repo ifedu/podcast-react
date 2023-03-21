@@ -9,7 +9,7 @@ export function Episode() {
   const { state: { episode, podcastInfo, song } } = useLocation();
 
   return (
-    <div className='Episode'>
+    <div className='Episode' data-testid='episode'>
       <PodcastInfo info={podcastInfo.results[0]} song={song}/>
 
       <div className='info'>
