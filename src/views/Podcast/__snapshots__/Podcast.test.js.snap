@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Podcast renders correctly 1`] = `
+<div
+  className="Podcast"
+  data-testid="podcast"
+>
+  <div
+    className="PodcastInfo"
+    data-testid="podcast-info"
+  >
+    <a
+      href="/podcast/undefined"
+      onClick={[Function]}
+    >
+      <div
+        className="section picture"
+      >
+        <img
+          alt="All Songs Considered"
+        />
+      </div>
+      <div
+        className="section title"
+      >
+        <span />
+        <div>
+          by 
+        </div>
+      </div>
+    </a>
+    <div
+      className="section description"
+    >
+      <span>
+        Description
+      </span>
+      <div />
+    </div>
+  </div>
+  <div
+    className="episode"
+  >
+    <div>
+      Episodes: 
+      1
+    </div>
+    <div
+      className="table"
+    >
+      <div
+        className="head row"
+      >
+        <span>
+          Title
+        </span>
+        <span>
+          Date
+        </span>
+        <span>
+          Duration
+        </span>
+      </div>
+      <div
+        className="body"
+      >
+        <a
+          data-testid="link-to-episode"
+          href="/podcast/1/episode/1"
+          onClick={[Function]}
+        >
+          <div
+            className="episode row"
+          >
+            <span />
+            <span>
+              NaN/NaN/NaN
+            </span>
+            <span>
+              NaN:NaN
+            </span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;

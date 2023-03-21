@@ -29,13 +29,12 @@ export function Podcast() {
   const { podcastId } = useParams();
 
   const podcastInfo = usePodcast(setIsLoading, podcastId);
-
   if (!podcastInfo) {
     return null;
   }
 
   return (
-    <div className='Podcast'>
+    <div className='Podcast' data-testid='podcast'>
       <PodcastInfo info={podcastInfo.results[0]} song={song}/>
 
       <div className='episode'>
@@ -53,7 +52,7 @@ export function Podcast() {
               podcastInfo.results.map((episode, i) => {
                 if (!episode.description) return null;
 
-                return <Link key={i} to={`/podcast/${podcastId}/episode/${episode.trackId}`} state={{ podcastInfo, song, episode }}>
+                return <Link key={i} to={`/podcast/${podcastId}/episode/${episode.trackId}`} state={{ podcastInfo, song, episode }} data-testid='link-to-episode'>
                   <div className='episode row'>
                     <span>{episode.trackName}</span>
                     <span>{convertToShortDate(episode.releaseDate)}</span>
