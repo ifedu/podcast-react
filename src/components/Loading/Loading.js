@@ -9,7 +9,7 @@ export function Loading() {
 
   return (
     <div className='Loading'>
-      {isLoading && <img src={loading}></img>}
+      {isLoading && <img src={loading} data-testid='loading-img'></img>}
     </div>
   );
 }
