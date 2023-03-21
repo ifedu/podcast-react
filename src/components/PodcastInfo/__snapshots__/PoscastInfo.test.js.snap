@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PodcastInfo renders correctly 1`] = `
+<div
+  data-testid="episode"
+>
+  <div
+    className="PodcastInfo"
+    data-testid="podcast-info"
+  >
+    <a
+      href="/podcast/1"
+      onClick={[Function]}
+    >
+      <div
+        className="section picture"
+      >
+        <img
+          alt="All Songs Considered"
+        />
+      </div>
+      <div
+        className="section title"
+      >
+        <span />
+        <div>
+          by 
+        </div>
+      </div>
+    </a>
+    <div
+      className="section description"
+    >
+      <span>
+        Description
+      </span>
+      <div />
+    </div>
+  </div>
+</div>
+`;

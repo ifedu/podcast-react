@@ -5,7 +5,7 @@ import './PodcastInfo.css';
 
 export function PodcastInfo({ info, song }) {
   return (
-    <div className='PodcastInfo'>
+    <div className='PodcastInfo' data-testid='podcast-info'>
       <Link to={`/podcast/${info.collectionId}`} state={{ song }}>
         <div className='section picture'><img src={info.artworkUrl600} alt='All Songs Considered'/></div>
 
