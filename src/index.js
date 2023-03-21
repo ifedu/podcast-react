@@ -15,7 +15,7 @@ root.render(
   <React.StrictMode>
     <LoadingProvider>
       <div className='index'>
-        <BrowserRouter>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
           <div className='head'>
             <Logo/>
             <Loading/>
