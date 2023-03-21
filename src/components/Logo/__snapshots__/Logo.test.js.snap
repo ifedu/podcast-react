@@ -1,17 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Logo renders correctly 1`] = `
-<a
-  data-testid="logo"
-  href="/"
-  onClick={[Function]}
->
+Array [
   <div
-    className="Logo"
+    className="head"
   >
-    <div>
-      Podcaster
-    </div>
-  </div>
-</a>
+    <a
+      data-testid="logo"
+      href="/"
+      onClick={[Function]}
+    >
+      <div
+        className="Logo"
+      >
+        <div>
+          Podcaster
+        </div>
+      </div>
+    </a>
+  </div>,
+  <div
+    data-testid="main"
+  />,
+]
 `;

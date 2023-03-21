@@ -1,43 +1,53 @@
 import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import renderer from 'react-test-renderer' ;
+import { create } from 'react-test-renderer' ;
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 
 import { Logo } from './Logo';
-import { Main } from '../../views/Main/Main';
-import { LoadingProvider } from '../../hooks/LoadingContext';
 
-afterEach(cleanup);
+const getContent = (pathname = '/') =>
+  <MemoryRouter initialEntries={[{ pathname }]}>
+    <div className='head'>
+      <Logo/>
+    </div>
 
-describe(Logo.name, () => {
+    <Routes>
+      <Route path='/' element={<div data-testid='main'></div>}></Route>
+      <Route path='/foo' element={<div></div>}></Route>
+    </Routes>
+  </MemoryRouter>;
+
+describe('Logo', () => {
+  const content = getContent();
+
+  afterEach(cleanup);
+
   it('renders correctly', () => {
-    const tree = renderer.create(<MemoryRouter><Logo/></MemoryRouter>).toJSON();
+    const tree = create(content).toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   it('renders the logo', () => {
-    render(<MemoryRouter><Logo/></MemoryRouter>);
+    render(content);
     const logo = screen.getByTestId('logo');
     expect(logo).toBeInTheDocument();
   });
 
-  it('navigates to the home page', async () => {
-    render(
-      <MemoryRouter initialEntries={['/']}>
-        <LoadingProvider>
-          <Logo/>
-          <Routes>
-            <Route path="/" element={<Main/>} />
-          </Routes>
-        </LoadingProvider>
-      </MemoryRouter>
-    );
+  it('navigates to the main page', async () => {
+    const content = getContent('/foo');
 
-    const logo = screen.getByTestId('logo');
+    render(content);
+
+    await waitFor(() => {
+      const main = screen.queryByTestId('main');
+      expect(main).toBeNull();
+    });
+
+    const logo = screen.queryByTestId('logo');
     userEvent.click(logo);
 
     await waitFor(() => {
-      const main = screen.getByTestId('main');
+      const main = screen.queryByTestId('main');
       expect(main).toBeInTheDocument();
     });
   });
