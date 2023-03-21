@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/podcast-react/static/css/main.d1b2f07e.css",
+    "main.js": "/podcast-react/static/js/main.70fdfa28.js",
+    "static/media/loading.gif": "/podcast-react/static/media/loading.3791558b3e9de5a5ecb3.gif",
+    "index.html": "/podcast-react/index.html",
+    "main.d1b2f07e.css.map": "/podcast-react/static/css/main.d1b2f07e.css.map",
+    "main.70fdfa28.js.map": "/podcast-react/static/js/main.70fdfa28.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d1b2f07e.css",
+    "static/js/main.70fdfa28.js"
+  ]
+}
