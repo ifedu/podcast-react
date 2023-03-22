@@ -15,9 +15,9 @@ jest.mock('../../hooks/useSongs.js', () => ({
   useSongs: () => ({
     entry: [
       {
-        'im:artist': {},
+        'im:artist': { label: '' },
         'im:image': [{}, {}, {}],
-        'im:name': {},
+        'im:name': { label: '' },
         id: {
           attributes: {
             'im:id': 1,
